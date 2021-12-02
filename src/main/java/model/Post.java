@@ -17,7 +17,8 @@ public class Post {
         this.imageName = imageName;
     }
 
-    public Post(){}
+    public Post() {
+    }
 
     public Post(String title, String body) {
         this.title = title;
@@ -93,7 +94,7 @@ public class Post {
     }
 
     public void setName(String surname) {
-        this.name = surname ;
+        this.name = surname;
     }
 
     @Override
@@ -107,6 +108,7 @@ public class Post {
                 ", noLikes=" + noLikes +
                 ", noComments=" + noComments +
                 ", likedPost=" + likedPost +
+                ", email=" + email +
                 '}';
     }
 }

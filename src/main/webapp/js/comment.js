@@ -1,5 +1,4 @@
-
-function del(postId, userId, data){
+function del(postId, userId, data) {
     const comment = document.getElementsByClassName("comment");
 
     console.log(postId);
@@ -8,44 +7,44 @@ function del(postId, userId, data){
 
     let delCom = confirm("Are sure you want to delete this comment");
 
-    if(delCom){
+    if (delCom) {
         $.ajax({
             type: 'POST',
             url: '/DeleteCommentServlet',
-            data: {"postId": postId, "userId":userId},
+            data: {"postId": postId, "userId": userId},
 
-            success: function(data){
+            success: function (data) {
                 alert(data);
                 window.location.reload();
             },
-            error: function(){
+            error: function () {
                 // alert('error deleting post');
             }
         });
     }
 }
 
-function edit(postId, userId){
+function edit(postId, userId) {
     console.log("working edit");
 
     const editedComment = document.getElementsByClassName("edit-comment");
 
-    for (let i = 0; i < editedComment.length; i++){
+    for (let i = 0; i < editedComment.length; i++) {
         let comment = editedComment[i].value.trim();
-        if(comment != ""){
+        if (comment != "") {
             const editPost = confirm("Are you sure you want to edit comment");
 
-            if(editPost){
+            if (editPost) {
                 $.ajax({
                     type: 'POST',
                     url: '/EditCommentServlet',
-                    data: {"postId": postId, "userId":userId, "editedComment": comment},
+                    data: {"postId": postId, "userId": userId, "editedComment": comment},
 
-                    success: function(data){
+                    success: function (data) {
                         alert(data);
                         window.location.reload();
                     },
-                    error: function(){
+                    error: function () {
                         // alert('error editing post');
                     }
                 });

@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 
 /**
  * Create and Delete operations on the Like table
- * */
+ */
 public class LikeDataBase {
 
     private final Connection dbConnection;
@@ -20,18 +20,19 @@ public class LikeDataBase {
     /**
      * Base on the action provided, 0 for delete from or 1 for create in Like table
      * operation base on the required post and the user that liked it
+     *
      * @param userId
      * @param postId
      * @param action
      * @return boolean(true for successful creation and deletion and false for failure on create or delete)
-     * */
-    public boolean likePost(int userId, int postId, int action){
+     */
+    public boolean likePost(int userId, int postId, int action) {
         boolean success = false;
-        try{
+        try {
             String query;
             PreparedStatement preparedStatement;
 
-            if(action == 1){
+            if (action == 1) {
                 query = "insert into likes(post_id,user_id) " +
                         "values (?,?)";
 
@@ -41,16 +42,16 @@ public class LikeDataBase {
 
                 preparedStatement.executeUpdate();
                 success = true;
-            }else{
-                query = "delete from likes where user_id="+userId+" and post_id="+postId;
+            } else {
+                query = "delete from likes where user_id=" + userId + " and post_id=" + postId;
                 preparedStatement = DbConnection.getConnection().prepareStatement(query);
                 int result = preparedStatement.executeUpdate();
 
-                if(result > 0) {
+                if (result > 0) {
                     success = true;
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

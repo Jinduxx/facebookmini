@@ -12,19 +12,16 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "DeleteCommentServlet", value = "/DeleteCommentServlet")
 public class DeleteCommentServlet extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 
     /**
      * Servlet method for comment deletion
+     *
      * @param request
      * @param response
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try(PrintWriter out = response.getWriter();) {
+        try (PrintWriter out = response.getWriter();) {
             out.println("<html><body>");
             out.println("<h1>" + "Servlet Registration example" + "</h1>");
             out.println("</body></html>");
@@ -39,13 +36,13 @@ public class DeleteCommentServlet extends HttpServlet {
             //comment DOA
             CommentDatabase commentDatabase = new CommentDatabase(DbConnection.getConnection());
 
-            if(commentDatabase.deleteComment(postId, user.getId())){
+            if (commentDatabase.deleteComment(postId, user.getId())) {
                 response.getWriter().write("Success deleting comment");
-            }else{
+            } else {
                 httpSession.setAttribute("message", "error deleting comment or you don't have access to delete this comment");
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

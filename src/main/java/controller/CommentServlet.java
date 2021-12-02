@@ -17,13 +17,14 @@ public class CommentServlet extends HttpServlet {
 
     /**
      * Servlet method for viewing comment
+     *
      * @param request
      * @param response
      */
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try(PrintWriter out = response.getWriter()){
+        try (PrintWriter out = response.getWriter()) {
 
             //fetch data from post form
             int postId = Integer.parseInt(request.getParameter("postId"));
@@ -37,32 +38,33 @@ public class CommentServlet extends HttpServlet {
             CommentDatabase commentDatabaseDatabase = new CommentDatabase(DbConnection.getConnection());
             List<Comment> comments = commentDatabaseDatabase.getComments(postId);
 
-            if(!comments.isEmpty()){
+            if (!comments.isEmpty()) {
                 out.println("comments retrieved successfully");
                 httpSession.setAttribute("message", "successful");
-                httpSession.setAttribute("user",currentUser);
-                httpSession.setAttribute("comments",comments);
-            }else{
+                httpSession.setAttribute("user", currentUser);
+                httpSession.setAttribute("comments", comments);
+            } else {
                 out.print("404 not found");
-                httpSession.setAttribute("user",currentUser);
+                httpSession.setAttribute("user", currentUser);
                 httpSession.setAttribute("message", "No comment associated with post");
             }
 
             response.sendRedirect("comment.jsp");
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
     /**
      * Servlet method for comment creation
+     *
      * @param request
      * @param response
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try(PrintWriter out = response.getWriter();){
+        try (PrintWriter out = response.getWriter();) {
             out.println("<html><body>");
             out.println("<h1>" + "Servlet Registration example" + "</h1>");
             out.println("</body></html>");
@@ -79,19 +81,19 @@ public class CommentServlet extends HttpServlet {
             //from the comment DOA
             CommentDatabase commentDatabaseDatabase = new CommentDatabase(DbConnection.getConnection());
 
-            if(commentDatabaseDatabase.createComment(userId,postId,comment)){
-               out.println("File uploaded to this directory");
-               httpSession.setAttribute("message", "successful");
-               httpSession.setAttribute("user",currentUser);
-            }else{
-               out.print("500 error");
-               httpSession.setAttribute("user",currentUser);
-               httpSession.setAttribute("message", "Error posting comment");
+            if (commentDatabaseDatabase.createComment(userId, postId, comment)) {
+                out.println("File uploaded to this directory");
+                httpSession.setAttribute("message", "successful");
+                httpSession.setAttribute("user", currentUser);
+            } else {
+                out.print("500 error");
+                httpSession.setAttribute("user", currentUser);
+                httpSession.setAttribute("message", "Error posting comment");
             }
 
             response.sendRedirect("home.jsp");
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }

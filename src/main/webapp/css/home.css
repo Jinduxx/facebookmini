@@ -1,33 +1,35 @@
-html{
+html {
     margin: 0;
     padding: 0;
-    box-sizing:border-box;
+    box-sizing: border-box;
     height: fit-content;
 }
 
-body{
-    background: darkslategrey;
+body {
+    background: darkblue;
     color: #fff;
 }
-nav{
+
+nav {
     background: #242527;
 }
-.topnav{
+
+.topnav {
     display: flex;
     justify-content: space-evenly;
 }
 
-#header_search_query{
+#header_search_query {
     width: 250px;
     height: 35px;
     padding: 15px;
     border-radius: 20px;
     border: none;
-    background-color: #3a3b3d ;
+    background-color: #3a3b3d;
     margin-left: 59px;
 }
 
-.facebook{
+.facebook {
     width: 50px;
     height: 50px;
     color: white;
@@ -39,16 +41,19 @@ nav{
     -webkit-border-radius: 50%;
     -o-border-radius: 50%; */
 }
-.yourfeed{
+
+.yourfeed {
     display: inline;
     color: #fff;
     margin-left: 20px;
 }
-.yourfeed1{
+
+.yourfeed1 {
     margin-top: 20px;
 }
-.pix{
-    width:50px;
+
+.pix {
+    width: 50px;
     height: 50px;
     border-radius: 50%;
 }
@@ -67,96 +72,115 @@ nav{
     /* scrollbar-color: rebeccapurple green; */
     scrollbar-width: thin;
 }
-.majorpix{
+
+.majorpix {
     margin-top: -10px;
     width: 750px;
     /* height: 250px; */
 }
-.text{
+
+.text {
     margin-top: 10px;
 }
-.searchbar{
-    background:#3a3b3d ;
+
+.searchbar {
+    background: #3a3b3d;
     width: 250px;
     height: 40px;
     border-radius: 15px;
     border: 2px #3a3b3d solid;
 }
+
 input:focus {
-    outline:  none;
+    outline: none;
 }
-.newpix{
+
+.newpix {
     width: 200px;
     height: 80px;
 }
 
-.like-icon i{
+.like-icon i {
     font-size: 30px;
 }
+
 /* Like area */
-.comment_like_share{
+.comment_like_share {
 
     display: flex;
     /*align-items: space-around;*/
     padding-left: 90px;
 }
-.like{
+
+.like {
     flex: 1;
 
     /* margin-right: 30px;
     display: inline-flex; */
 }
-.comment{
+
+.comment {
     flex: 1;
 
     /* margin-right:30px; */
     /* display: inline-flex; */
 }
-.edit{
+
+.edit {
     flex: 1;
 
     /* display: inline-flex; */
 }
-.delete{
+
+.delete {
     flex: 1;
 
     /* margin-right:30px;
     display: inline-flex; */
 
 }
-.like span{
+
+.like span {
     margin-left: 12px;
 }
-.comment span{
+
+.comment span {
     margin-left: 10px;
 }
-.share span{
+
+.share span {
     margin-left: 12px;
 }
-.comment a, .like a, .share a{
+
+.comment a, .like a, .share a {
     text-decoration: none;
 }
+
 /* Post Buttons */
-.col-btn button{
+.col-btn button {
     width: 100%;
 }
-.postArea label{
-    color:white;
+
+.postArea label {
+    color: white;
 }
-.third{
-    color:black;
+
+.third {
+    color: black;
 }
+
 /* post area */
-.linear img{
+.linear img {
     height: 50%;
     padding: 50px;
 }
-.scroller .linear img{
+
+.scroller .linear img {
     width: 100%;
     height: 500px;
 }
 
-.titleText h2{
+.titleText h2 {
     color: white;
     font-family: sans-serif;
     font-size: 2em;

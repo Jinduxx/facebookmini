@@ -1,4 +1,4 @@
-<%@page contentType="text/html" import = " java.util.* " pageEncoding="UTF-8" %>
+<%@page contentType="text/html" import=" java.util.* " pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,11 +39,12 @@
 </head>
 <body>
 <%
-    if(session.getAttribute("Registration Error") != null){%>
+    if (session.getAttribute("Registration Error") != null) {%>
 <div class="alert alert-success" role="alert">
     <%=session.getAttribute("Registration Error").toString()%>
 </div>
-<%}
+<%
+    }
     //delete session
     session.invalidate();
 %>
@@ -194,7 +195,8 @@
 </section>
 <footer>
     <p>
-        <small><span style="color: #989898">English (UK)</span> Hausa Português (Brasil) Français (France) Español العربية Italiano 日本語 Deutsch
+        <small><span style="color: #989898">English (UK)</span> Hausa Português (Brasil) Français (France) Español
+            العربية Italiano 日本語 Deutsch
             Bahasa Indonesia हिन्दी
         </small>
     <hr style="width: 75%; margin-bottom: -1px;  margin-top: 4px; padding: 4px;"/>

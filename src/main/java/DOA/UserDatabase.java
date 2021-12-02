@@ -9,13 +9,9 @@ import java.sql.ResultSet;
 
 /**
  * Create and Delete operations on the User table
- * */
+ */
 public class UserDatabase {
     private Connection dbConnection;
-
-    public UserDatabase(){
-
-    }
 
     public UserDatabase(Connection connection) {
         this.dbConnection = connection;
@@ -23,10 +19,12 @@ public class UserDatabase {
 
     /**
      * CREATE operation on User
-     * @param user */
-    public boolean registerUser(User user){
+     *
+     * @param user
+     */
+    public boolean registerUser(User user) {
         boolean set = false;
-        try{
+        try {
             String query = " INSERT INTO user (firstName,lastName,email,password) values"
                     + "(?,?,?,?);";
 
@@ -40,7 +38,7 @@ public class UserDatabase {
             set = true;
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return set;
@@ -48,11 +46,12 @@ public class UserDatabase {
 
     /**
      * Get operation on User
+     *
      * @param email
      * @param password
      * @return User object
-     * */
-    public User loginUser(String email, String password){
+     */
+    public User loginUser(String email, String password) {
         User user = null;
         String query;
 
@@ -65,7 +64,7 @@ public class UserDatabase {
 
             ResultSet result = preparedStatement.executeQuery();
 
-            if(result.next()){
+            if (result.next()) {
                 user = new User();
 
                 user.setFirstName(result.getString("firstname"));
@@ -76,11 +75,11 @@ public class UserDatabase {
 
                 String decryptPass = PasswordHashing.decryptPassword(result.getString("password"));
 
-                if(!decryptPass.equals(password)){
+                if (!decryptPass.equals(password)) {
                     return null;
                 }
             }
-        }catch(Exception e){
+        } catch (Exception e) {
         }
 
         return user;
@@ -88,12 +87,13 @@ public class UserDatabase {
 
     /**
      * DELETE operation on User
+     *
      * @param email
      * @return boolean(true for successful deletion and false on failure to delete)
-     * */
+     */
 
-    public boolean deleteUser(String email){
-        boolean success =  false;
+    public boolean deleteUser(String email) {
+        boolean success = false;
         try {
             String query = "delete from user where email= ?";
             PreparedStatement prepared = this.dbConnection.prepareStatement(query);
@@ -101,7 +101,7 @@ public class UserDatabase {
 
             int result = prepared.executeUpdate();
 
-            if(result > 0) {
+            if (result > 0) {
                 success = true;
             }
 

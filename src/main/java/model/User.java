@@ -12,8 +12,7 @@ public class User {
     private String post;
 
 
-
-    public User(){
+    public User() {
 
     }
 
@@ -65,7 +64,6 @@ public class User {
     public void setId(int id) {
         this.id = id;
     }
-
 
 
 //    private int id;

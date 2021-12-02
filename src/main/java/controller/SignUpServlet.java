@@ -13,13 +13,10 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "SignUpServlet", value = "/SignUpServlet")
 public class SignUpServlet extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 
     /**
      * Servlet method for user registration
+     *
      * @param request
      * @param response
      */
@@ -35,7 +32,6 @@ public class SignUpServlet extends HttpServlet {
         HttpSession httpSession = request.getSession();
 
 
-
         //fetch data from registration page
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
@@ -45,35 +41,35 @@ public class SignUpServlet extends HttpServlet {
 
         //data check
 
-//        if (firstname.length() < 2) {
-//            httpSession.setAttribute("Registration Error", " firstname cannot be less than 2 character long");
-//            response.sendRedirect("index.jsp");
-//            return;
-//        }
-//
-//        if (lastname.length() < 2) {
-//            httpSession.setAttribute("Registration Error", "lastname cannot be less than 2 character long");
-//            response.sendRedirect("index.jsp");
-//            return;
-//        }
-//
-//
-//        if(!email.contains("@")){
-//            httpSession.setAttribute("Registration Error", "email is invalid");
-//            response.sendRedirect("index.jsp");
-//            return;
-//        }
-//        if(password.length() < 7){
-//            httpSession.setAttribute("Registration Error", "password cannot be less than 6 character long");
-//            response.sendRedirect("index.jsp");
-//            return;
-//        }
+        if (firstname.length() < 2) {
+            httpSession.setAttribute("Registration Error", " firstname cannot be less than 2 character long");
+            response.sendRedirect("index.jsp");
+            return;
+        }
+
+        if (lastname.length() < 2) {
+            httpSession.setAttribute("Registration Error", "lastname cannot be less than 2 character long");
+            response.sendRedirect("index.jsp");
+            return;
+        }
+
+
+        if (!email.contains("@")) {
+            httpSession.setAttribute("Registration Error", "email is invalid");
+            response.sendRedirect("index.jsp");
+            return;
+        }
+        if (password.length() < 7) {
+            httpSession.setAttribute("Registration Error", "password cannot be less than 6 character long");
+            response.sendRedirect("index.jsp");
+            return;
+        }
         //================================== end of validation ====================================//
 
         //Password encryption
         password = PasswordHashing.encryptPassword(password);
 
-        User userModel = new User(firstname,lastname,email,password);
+        User userModel = new User(firstname, lastname, email, password);
 
         //from user DataBase
         UserDatabase regUser = new UserDatabase(DbConnection.getConnection());

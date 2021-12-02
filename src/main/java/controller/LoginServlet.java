@@ -12,13 +12,9 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "LoginServlet", value = "/LoginServlet")
 public class LoginServlet extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
     /**
      * Servlet method for user login
+     *
      * @param request
      * @param response
      */
@@ -39,10 +35,10 @@ public class LoginServlet extends HttpServlet {
         UserDatabase userDatabase = new UserDatabase(DbConnection.getConnection());
         User user = userDatabase.loginUser(email, password);
 
-        if(user != null){
+        if (user != null) {
             httpSession.setAttribute("user", user);
             response.sendRedirect("home.jsp");
-        }else{
+        } else {
             httpSession.setAttribute("Registration Error", "User not found, Enter Correct Password or Email");
             response.sendRedirect("index.jsp");
         }

@@ -12,19 +12,16 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "LikeServlet", value = "/LikeServlet")
 public class LikeServlet extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 
     /**
      * Servlet method for like
+     *
      * @param request
      * @param response
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try(PrintWriter out = response.getWriter();){
+        try (PrintWriter out = response.getWriter();) {
             out.println("<html><body>");
             out.println("<h1>" + "Servlet Registration example" + "</h1>");
             out.println("</body></html>");
@@ -44,14 +41,14 @@ public class LikeServlet extends HttpServlet {
 
             System.out.println(action);
 
-            if(likeDataBase.likePost(user.getId(), postId, action)){
+            if (likeDataBase.likePost(user.getId(), postId, action)) {
                 response.getWriter().write("Success liking/disliking post");
-            }else{
+            } else {
                 out.print("500 error");
                 response.getWriter().write("Failed to liking post");
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
