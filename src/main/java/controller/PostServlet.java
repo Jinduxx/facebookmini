@@ -55,9 +55,10 @@ public class PostServlet extends HttpServlet {
             InputStream in = part.getInputStream();
             boolean success = uploadFile(in, path);
 
+            PostDatabase postDatabase = new PostDatabase(DbConnection.getConnection());
+            Post post;
             if (success) {
-                Post post = new Post(title, body, imageName);
-                PostDatabase postDatabase = new PostDatabase(DbConnection.getConnection());
+                 post = new Post(title, body, imageName);
 
                 if (postDatabase.createPost(userId, post)) {
                     out.println("File uploaded to this directory " + path);
@@ -66,9 +67,18 @@ public class PostServlet extends HttpServlet {
                     out.print("500 error");
                     httpSession.setAttribute("message", "Error uploading image to database");
                 }
-            } else {
-                out.print("error");
-                httpSession.setAttribute("message", "error uploading file");
+            }
+            else {
+                post = new Post(title, body);
+//                PostDatabase postDatabase1 = new PostDatabase(DbConnection.getConnection());
+
+                if (postDatabase.createPost(userId, post)) {
+                    out.println("File uploaded to this directory " + path);
+                    httpSession.setAttribute("message", "File uploaded successfully");
+                } else {
+                    out.print("500 error");
+                    httpSession.setAttribute("message", "Error uploading image to database");
+                }
             }
             response.sendRedirect("home.jsp");
         } catch (Exception e) {
