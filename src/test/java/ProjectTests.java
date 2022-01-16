@@ -30,7 +30,7 @@ class ProjectTests {
         boolean success = userDatabaseTest.registerUser(user);
         assertTrue(success);
 
-        User user = loginUser("2joe@gmail.com", "1234");
+        User user = loginUser("2joe@gmail.com", "1235");
         assertNotNull(user);
 
         assertNotNull(user.getFirstName());

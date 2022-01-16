@@ -38,8 +38,7 @@
     <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
-<%
-    if (session.getAttribute("Registration Error") != null) {%>
+<% if (session.getAttribute("Registration Error") != null) {%>
 <div class="alert alert-success" role="alert">
     <%=session.getAttribute("Registration Error").toString()%>
 </div>
